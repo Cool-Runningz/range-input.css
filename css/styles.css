@@ -1,0 +1,55 @@
+.sub-description {
+  text-align: center;
+  font-style: italic;
+  background-color: #80808038;
+  border-left: 4px solid grey;
+  padding: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.flex-container-center {
+  display: flex;
+  justify-content: center;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0rem 3rem;
+}
+
+input[type="number"] {
+  width: 3rem;
+}
+
+.flex {
+  display: flex;
+}
+
+label + input {
+  margin-left: 1rem;
+}
+
+article h3 {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.hide-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+select {
+  margin-left: 0.25rem;
+}
+
+#code-container {
+  width: var(--width-card-medium);
+}

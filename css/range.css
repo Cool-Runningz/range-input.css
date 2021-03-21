@@ -1,0 +1,23 @@
+:root {
+  --track-width: 25rem;
+  --track-height: 0.5rem;
+}
+
+/*********** Baseline, reset styles ***********/
+input[type="range"] {
+  -webkit-appearance: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-moz-range-track {
+  background-color: lightBlue;
+  border-radius: 0.5rem;
+  height: var(--track-height);
+  width: var(--track-width);
+}
