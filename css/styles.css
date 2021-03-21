@@ -53,3 +53,48 @@ select {
 #code-container {
   width: var(--width-card-medium);
 }
+
+/***********Tooltip Styles**************/
+#copy-btn {
+  position: relative;
+}
+
+#copy-btn.tooltip::before,
+#copy-btn.tooltip::after {
+  --scale: 1;
+}
+
+#copy-btn::before,
+#copy-btn::after {
+  --scale: 0;
+  --arrow-size: 10px;
+  --tooltip-color: #555;
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--translate-y, 0))
+    scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: bottom center;
+}
+
+/*Tooltip text container*/
+#copy-btn::before {
+  --translate-y: calc(-100% - var(--arrow-size));
+  content: attr(data-tooltip);
+  width: max-content;
+  max-width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-align: center;
+  background: var(--tooltip-color);
+}
+
+/*Tooltip bottom arrow*/
+#copy-btn::after {
+  --translate-y: calc(-1 * var(--arrow-size));
+  content: "";
+  border: var(--arrow-size) solid transparent;
+  border-top-color: var(--tooltip-color);
+  transform-origin: top center;
+}
