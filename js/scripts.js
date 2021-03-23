@@ -1,7 +1,8 @@
 //Element variables
 const copyBtn = document.getElementById("copy-btn");
+const colorInputs = document.querySelectorAll("input[type='color']")
 const numberInputs = document.querySelectorAll("input[type='number'], select")
-const rangeInput = document.querySelector("input[type='range']");
+const rangeInput = document.querySelector("input[type='range']")
 
 const copyCSS = () => {
   const codeEl = document.getElementsByTagName("code")[0];
@@ -39,8 +40,16 @@ const onNumberOrSelectInputChange = (event) => {
     rangeInput.style.setProperty(`--${cssVar}`, `${dimension}${unit}`);
 }
 
+const onColorInputChange = (event) => {
+    const cssVar = event.target.id
+    rangeInput.style.setProperty(`--${cssVar}`, event.target.value)
+}
+
 //Setting up Event Listeners
 copyBtn.addEventListener("click", copyCSS);
 Array.from(numberInputs).forEach(input => {
     input.addEventListener("change", onNumberOrSelectInputChange)
+})
+Array.from(colorInputs).forEach(input => {
+    input.addEventListener("input", onColorInputChange)
 })

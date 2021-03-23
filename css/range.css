@@ -1,7 +1,8 @@
 :root {
-  --track-width: 25rem;
-  --track-height: 0.5rem;
   --track-border-radius: 0.5rem;
+  --track-color: #ADD8E6; /*lightBlue*/
+  --track-height: 0.5rem;
+  --track-width: 25rem;
 }
 
 /*********** Baseline, reset styles ***********/
@@ -20,7 +21,7 @@ input[type="range"]:focus {
 /*********** Chrome, Safari, Opera and Edge (post Chromium) styles ***********/
 /* slider track */
 input[type="range"]::-webkit-slider-runnable-track {
-  background-color: lightBlue;
+  background-color: var(--track-color);
   border-radius: var(--track-border-radius);
   height: var(--track-height);
 }
@@ -28,7 +29,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 /*********** Firefox styles ***********/
 /* slider track */
 input[type="range"]::-moz-range-track {
-  background-color: lightBlue;
+  background-color: var(--track-color);
   border-radius: var(--track-border-radius);
   height: var(--track-height);
 }
@@ -45,7 +46,7 @@ input[type="range"]::-moz-range-track {
 }
 .slider::-ms-fill-lower,
 .slider::-ms-fill-upper {
-  background-color: lightBlue;
+  background-color: var(--track-color);
   border-radius: var(--track-border-radius);
 }
 
