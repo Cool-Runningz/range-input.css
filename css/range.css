@@ -1,6 +1,7 @@
 :root {
   --track-width: 25rem;
   --track-height: 0.5rem;
+  --track-border-radius: 0.5rem;
 }
 
 /*********** Baseline, reset styles ***********/
@@ -8,6 +9,7 @@ input[type="range"] {
   -webkit-appearance: none;
   cursor: pointer;
   background: transparent;
+  width: var(--track-width);
 }
 
 /* Removes default focus */
@@ -15,9 +17,35 @@ input[type="range"]:focus {
   outline: none;
 }
 
+/*********** Chrome, Safari, Opera and Edge (post Chromium) styles ***********/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: lightBlue;
+  border-radius: var(--track-border-radius);
+  height: var(--track-height);
+}
+
+/*********** Firefox styles ***********/
+/* slider track */
 input[type="range"]::-moz-range-track {
   background-color: lightBlue;
-  border-radius: 0.5rem;
+  border-radius: var(--track-border-radius);
   height: var(--track-height);
-  width: var(--track-width);
 }
+
+/*********** IE and legacy Edge styles ***********/
+/* slider track */
+.slider::-ms-track {
+  color: transparent; /*remove default tick marks*/
+  height: var(--track-height);
+
+  /*leave room for the larger thumb to overflow with a transparent border */
+  border-color: transparent;
+  border-width: 7px 0;
+}
+.slider::-ms-fill-lower,
+.slider::-ms-fill-upper {
+  background-color: lightBlue;
+  border-radius: var(--track-border-radius);
+}
+
