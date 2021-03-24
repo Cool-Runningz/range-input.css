@@ -3,6 +3,10 @@
   --track-color: #ADD8E6; /*lightBlue*/
   --track-height: 0.5rem;
   --track-width: 25rem;
+  --thumb-border-radius: 0.5rem;
+  --thumb-color: #808080;
+  --thumb-height: 1rem;
+  --thumb-width: 1rem;
 }
 
 /*********** Baseline, reset styles ***********/
@@ -26,12 +30,32 @@ input[type="range"]::-webkit-slider-runnable-track {
   height: var(--track-height);
 }
 
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  margin-top: -4px; /* Centers the thumb on the track */
+
+  /*Customizable styles*/
+  background-color: var(--thumb-color);
+  border-radius: var(--thumb-border-radius);
+  height: var(--thumb-height);
+  width: var(--thumb-width)
+}
+
 /*********** Firefox styles ***********/
 /* slider track */
 input[type="range"]::-moz-range-track {
   background-color: var(--track-color);
   border-radius: var(--track-border-radius);
   height: var(--track-height);
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+  background-color: var(--thumb-color);
+  border-radius: var(--thumb-border-radius);
+  height: var(--thumb-height);
+  width: var(--thumb-width)
 }
 
 /*********** IE and legacy Edge styles ***********/
@@ -48,5 +72,13 @@ input[type="range"]::-moz-range-track {
 .slider::-ms-fill-upper {
   background-color: var(--track-color);
   border-radius: var(--track-border-radius);
+}
+/* slider thumb */
+.slider::-ms-thumb {
+  margin-top: 0;
+  background-color: var(--thumb-color);
+  border-radius: var(--thumb-border-radius);
+  height: var(--thumb-height);
+  width: var(--thumb-width)
 }
 

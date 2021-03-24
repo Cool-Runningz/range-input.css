@@ -107,7 +107,70 @@
         </article>
         <article id="card-thumb">
           <h3>Thumb Styles</h3>
-          <p>Card content <sup>with notification</sup></p>
+          <div class="flex">
+            <label for="thumb-color">Color: </label>
+            <input type="color" name="" id="thumb-color" value="#808080"/>
+          </div>
+          <div class="flex">
+            <label for="thumb-width"> Width: </label>
+            <input
+                    type="number"
+                    name=""
+                    id="thumb-width"
+                    min="0"
+                    value="1"
+                    step="0.5"
+            />
+
+            <label class="hide-label" for="thumb-width-unit"
+            >Choose a unit:</label
+            >
+            <select name="" id="thumb-width-unit">
+              <option value="rem">rem</option>
+              <option value="px">px</option>
+              <option value="%">%</option>
+            </select>
+          </div>
+          <div class="flex">
+            <label for="thumb-height"> Height: </label>
+            <input
+                    type="number"
+                    name=""
+                    id="thumb-height"
+                    min="0"
+                    step="0.5"
+                    value="1"
+            />
+
+            <label class="hide-label" for="thumb-height-unit"
+            >Choose a unit:</label
+            >
+            <select name="" id="thumb-height-unit">
+              <option value="rem">rem</option>
+              <option value="px">px</option>
+              <option value="%">%</option>
+            </select>
+          </div>
+          <div class="flex">
+            <label for="thumb-border-radius">Border-radius: </label>
+            <input
+                    type="number"
+                    name=""
+                    id="thumb-border-radius"
+                    min="0"
+                    step="0.5"
+                    value="0.5"
+            />
+
+            <label class="hide-label" for="thumb-border-radius-unit"
+            >Choose a unit:</label
+            >
+            <select name="" id="thumb-border-radius-unit">
+              <option value="rem">rem</option>
+              <option value="px">px</option>
+              <option value="%">%</option>
+            </select>
+          </div>
           <p>
             <small>*The thumb is used to select varying range values.</small>
           </p>
