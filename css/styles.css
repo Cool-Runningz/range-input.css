@@ -54,9 +54,15 @@ select {
   width: var(--width-card-medium);
 }
 
+pre {
+  position: relative;
+}
+
 /***********Tooltip Styles**************/
 #copy-btn {
-  position: relative;
+  position: absolute;
+  right: 1rem;
+  top: 3.5rem;
 }
 
 #copy-btn.tooltip::before,

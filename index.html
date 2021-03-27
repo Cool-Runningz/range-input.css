@@ -36,7 +36,7 @@
           <h3>Track Styles</h3>
           <div class="flex">
             <label for="track-color">Color: </label>
-            <input type="color" name="" id="track-color" value="#ADD8E6"/>
+            <input type="color" name="" id="track-color" value="#ADD8E6" />
           </div>
           <div class="flex">
             <label for="track-width"> Width: </label>
@@ -100,8 +100,7 @@
           </div>
           <p>
             <small>
-              *The track is the element that the thumb runs
-              along.
+              *The track is the element that the thumb runs along.
             </small>
           </p>
         </article>
@@ -109,21 +108,21 @@
           <h3>Thumb Styles</h3>
           <div class="flex">
             <label for="thumb-color">Color: </label>
-            <input type="color" name="" id="thumb-color" value="#808080"/>
+            <input type="color" name="" id="thumb-color" value="#808080" />
           </div>
           <div class="flex">
             <label for="thumb-width"> Width: </label>
             <input
-                    type="number"
-                    name=""
-                    id="thumb-width"
-                    min="0"
-                    value="1"
-                    step="0.5"
+              type="number"
+              name=""
+              id="thumb-width"
+              min="0"
+              value="1"
+              step="0.5"
             />
 
             <label class="hide-label" for="thumb-width-unit"
-            >Choose a unit:</label
+              >Choose a unit:</label
             >
             <select name="" id="thumb-width-unit">
               <option value="rem">rem</option>
@@ -134,16 +133,16 @@
           <div class="flex">
             <label for="thumb-height"> Height: </label>
             <input
-                    type="number"
-                    name=""
-                    id="thumb-height"
-                    min="0"
-                    step="0.5"
-                    value="1"
+              type="number"
+              name=""
+              id="thumb-height"
+              min="0"
+              step="0.5"
+              value="1"
             />
 
             <label class="hide-label" for="thumb-height-unit"
-            >Choose a unit:</label
+              >Choose a unit:</label
             >
             <select name="" id="thumb-height-unit">
               <option value="rem">rem</option>
@@ -154,16 +153,16 @@
           <div class="flex">
             <label for="thumb-border-radius">Border-radius: </label>
             <input
-                    type="number"
-                    name=""
-                    id="thumb-border-radius"
-                    min="0"
-                    step="0.5"
-                    value="0.5"
+              type="number"
+              name=""
+              id="thumb-border-radius"
+              min="0"
+              step="0.5"
+              value="0.5"
             />
 
             <label class="hide-label" for="thumb-border-radius-unit"
-            >Choose a unit:</label
+              >Choose a unit:</label
             >
             <select name="" id="thumb-border-radius-unit">
               <option value="rem">rem</option>
@@ -179,6 +178,7 @@
       <section>
         <div id="code-container">
           <pre>
+          <button id="copy-btn" data-tooltip="Copied!">Copy</button>
         <code>
           /********** Base styles **********/
           input[type=range]{
@@ -193,7 +193,6 @@
           }
         </code>
     </pre>
-          <button id="copy-btn" data-tooltip="Copied!">Copy CSS</button>
         </div>
       </section>
       <hr />
