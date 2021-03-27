@@ -1,6 +1,6 @@
 :root {
   --track-border-radius: 0.5rem;
-  --track-color: #ADD8E6; /*lightBlue*/
+  --track-color: #add8e6; /*lightBlue*/
   --track-height: 0.5rem;
   --track-width: 25rem;
   --thumb-border-radius: 0.5rem;
@@ -19,10 +19,9 @@ input[type="range"] {
 
 /* Removes default focus */
 /* TODO: apply this style when you add the other focus styles*/
-/*input[type="range"]:focus {
+input[type="range"]:focus {
   outline: none;
-}*/
-
+}
 
 /*********** Chrome, Safari, Opera and Edge (post Chromium) styles ***********/
 /* slider track */
@@ -44,6 +43,11 @@ input[type="range"]::-webkit-slider-thumb {
   width: var(--thumb-width);
 }
 
+input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 3px solid var(--thumb-color);
+  outline-offset: 0.125rem;
+}
+
 /*********** Firefox styles ***********/
 /* slider track */
 input[type="range"]::-moz-range-track {
@@ -60,9 +64,13 @@ input[type="range"]::-moz-range-thumb {
   width: var(--thumb-width);
 }
 
+input[type="range"]:focus::-moz-range-thumb{
+  outline: 3px solid var(--thumb-color);
+  outline-offset: 0.125rem;
+}
 /*********** IE and legacy Edge styles ***********/
 /* slider track */
-.slider::-ms-track {
+input[type="range"]::-ms-track {
   color: transparent; /*remove default tick marks*/
   height: var(--track-height);
 
@@ -70,17 +78,22 @@ input[type="range"]::-moz-range-thumb {
   border-color: transparent;
   border-width: 7px 0;
 }
-.slider::-ms-fill-lower,
-.slider::-ms-fill-upper {
+input[type="range"]::-ms-fill-lower,
+input[type="range"]::-ms-fill-upper {
   background-color: var(--track-color);
   border-radius: var(--track-border-radius);
 }
 /* slider thumb */
-.slider::-ms-thumb {
+input[type="range"]::-ms-thumb {
   margin-top: 0;
   background-color: var(--thumb-color);
   border-radius: var(--thumb-border-radius);
   height: var(--thumb-height);
   width: var(--thumb-width);
 }
-
+input[type="range"]:focus::-ms-thumb {
+  margin-left: 4px; /** Offset the border from getting hidden at starting position */
+  margin-right: 4px; /** Offset the border from getting hidden at ending position */
+  outline: 3px solid var(--thumb-color);
+  outline-offset: 0.125rem;
+}
