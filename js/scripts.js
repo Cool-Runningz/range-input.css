@@ -108,13 +108,16 @@ input[type="range"]::-webkit-slider-runnable-track {
 /* slider thumb */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
-  margin-top: -4px; /* Centers the thumb on the track */
-
-  /*Customizable styles*/
+  margin-top: -4px; /* Centers thumb on the track */
   background-color: ${cssMappings["thumb-color"]};
   border-radius: ${cssMappings["thumb-border-radius"]};
   height: ${cssMappings["thumb-height"]};
   width: ${cssMappings["thumb-width"]};
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 3px solid ${cssMappings["thumb-color"]};
+  outline-offset: 0.125rem;
 }
 
 /*********** Firefox styles ***********/
@@ -133,9 +136,14 @@ input[type="range"]::-moz-range-thumb {
   width: ${cssMappings["thumb-width"]};
 }
 
+input[type="range"]:focus::-moz-range-thumb{
+  outline: 3px solid ${cssMappings["thumb-color"]};
+  outline-offset: 0.125rem;
+}
+
 /*********** IE and legacy Edge styles ***********/
 /* slider track */
-.slider::-ms-track {
+input[type="range"]::-ms-track {
   color: transparent; /*remove default tick marks*/
   height: ${cssMappings["track-height"]};
 
@@ -143,18 +151,24 @@ input[type="range"]::-moz-range-thumb {
   border-color: transparent;
   border-width: 7px 0;
 }
-.slider::-ms-fill-lower,
-.slider::-ms-fill-upper {
+input[type="range"]::-ms-fill-lower,
+input[type="range"]::-ms-fill-upper {
   background-color: ${cssMappings["track-color"]};
   border-radius: ${cssMappings["track-border-radius"]};
 }
 /* slider thumb */
-.slider::-ms-thumb {
+input[type="range"]::-ms-thumb {
   margin-top: 0;
   background-color: ${cssMappings["thumb-color"]};
   border-radius: ${cssMappings["thumb-border-radius"]};
   height: ${cssMappings["thumb-height"]};
   width: ${cssMappings["thumb-width"]};
+}
+input[type="range"]:focus::-ms-thumb {
+  margin-left: 4px; /** Offset the border from getting hidden at starting position */
+  margin-right: 4px; /** Offset the border from getting hidden at ending position */
+  outline: 3px solid ${cssMappings["thumb-color"]};
+  outline-offset: 0.125rem;
 }
 `;
 }
