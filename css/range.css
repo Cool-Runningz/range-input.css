@@ -18,9 +18,11 @@ input[type="range"] {
 }
 
 /* Removes default focus */
-input[type="range"]:focus {
+/* TODO: apply this style when you add the other focus styles*/
+/*input[type="range"]:focus {
   outline: none;
-}
+}*/
+
 
 /*********** Chrome, Safari, Opera and Edge (post Chromium) styles ***********/
 /* slider track */
@@ -39,7 +41,7 @@ input[type="range"]::-webkit-slider-thumb {
   background-color: var(--thumb-color);
   border-radius: var(--thumb-border-radius);
   height: var(--thumb-height);
-  width: var(--thumb-width)
+  width: var(--thumb-width);
 }
 
 /*********** Firefox styles ***********/
@@ -55,7 +57,7 @@ input[type="range"]::-moz-range-thumb {
   background-color: var(--thumb-color);
   border-radius: var(--thumb-border-radius);
   height: var(--thumb-height);
-  width: var(--thumb-width)
+  width: var(--thumb-width);
 }
 
 /*********** IE and legacy Edge styles ***********/
@@ -79,6 +81,6 @@ input[type="range"]::-moz-range-thumb {
   background-color: var(--thumb-color);
   border-radius: var(--thumb-border-radius);
   height: var(--thumb-height);
-  width: var(--thumb-width)
+  width: var(--thumb-width);
 }
 

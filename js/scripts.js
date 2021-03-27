@@ -1,55 +1,163 @@
 //Element variables
 const copyBtn = document.getElementById("copy-btn");
-const colorInputs = document.querySelectorAll("input[type='color']")
-const numberInputs = document.querySelectorAll("input[type='number'], select")
-const rangeInput = document.querySelector("input[type='range']")
+const colorInputs = document.querySelectorAll("input[type='color']");
+const numberAndSelectInputs = document.querySelectorAll("input[type='number'], select");
+const rangeInput = document.querySelector("input[type='range']");
+const codeEl = document.getElementsByTagName("code")[0];
 
 const copyCSS = () => {
-  const codeEl = document.getElementsByTagName("code")[0];
-
-  window.navigator.clipboard
+  navigator.clipboard
     .writeText(codeEl.innerText.trim())
     .then(() => {
-        copyBtn.classList.toggle("tooltip") //Toggle tooltip display on
-        setTimeout(() => {
-            copyBtn.classList.toggle("tooltip") //After 1 sec, toggle tooltip display off
-        }, 1000)
+      copyBtn.classList.toggle("tooltip"); //Toggle tooltip display on
+      setTimeout(() => {
+        copyBtn.classList.toggle("tooltip"); //After 1 sec, toggle tooltip display off
+      }, 1000);
     })
     .catch(() => console.error("Error: Unable to copy to clipboard"));
 };
 
 const onNumberOrSelectInputChange = (event) => {
-    let cssVar, dimension, unit;
+  let cssVar, dimension, unit;
 
-    if(event.target.type === "number"){
-        const select = document.getElementById(`${event.target.id}-unit`) //Grab the select value to the right in order to get the current unit.
-        unit = select.value //rem, px, or %
-        dimension = event.target.value //number input value
-        cssVar = event.target.id //CSS variable that will get updated in range.css
-    }
-    else {
-        const splitId = event.target.id.split("-") //Get the select ID and split it so that we can infer the corresponding input ID
-        const inputId = splitId.slice(0, (splitId.length - 1)).join("-") //The input ID is the same as the select id sans the '-unit'
-        const input = document.getElementById(`${inputId}`)
+  if (event.target.type === "number") {
+    const select = document.getElementById(`${event.target.id}-unit`); //Grab the select value to the right in order to get the current unit.
+    unit = select.value; //rem, px, or %
+    dimension = event.target.value; //number input value
+    cssVar = event.target.id; //CSS variable that will get updated in range.css
+  } else {
+    const splitId = event.target.id.split("-"); //Get the select ID and split it so that we can infer the corresponding input ID
+    const inputId = splitId.slice(0, splitId.length - 1).join("-"); //The input ID is the same as the select id sans the '-unit'
+    const input = document.getElementById(`${inputId}`);
 
-        dimension = input.value
-        unit = event.target.value
-        cssVar = inputId
-    }
+    dimension = input.value;
+    unit = event.target.value;
+    cssVar = inputId;
+  }
 
-    rangeInput.style.setProperty(`--${cssVar}`, `${dimension}${unit}`);
-}
+  rangeInput.style.setProperty(`--${cssVar}`, `${dimension}${unit}`);
+  generateStyles()
+};
 
 const onColorInputChange = (event) => {
-    const cssVar = event.target.id
-    rangeInput.style.setProperty(`--${cssVar}`, event.target.value)
-}
+  const cssVar = event.target.id;
+  rangeInput.style.setProperty(`--${cssVar}`, event.target.value);
+ generateStyles()
+};
 
 //Setting up Event Listeners
+window.onload = function() {
+  generateStyles()
+};
 copyBtn.addEventListener("click", copyCSS);
-Array.from(numberInputs).forEach(input => {
-    input.addEventListener("change", onNumberOrSelectInputChange)
-})
-Array.from(colorInputs).forEach(input => {
-    input.addEventListener("input", onColorInputChange)
-})
+Array.from(numberAndSelectInputs).forEach((input) => {
+  input.addEventListener("change", onNumberOrSelectInputChange);
+});
+Array.from(colorInputs).forEach((input) => {
+  input.addEventListener("input", onColorInputChange);
+});
+
+const getUnit = (inputId) => {
+  const selectInputs = Array.from(numberAndSelectInputs).filter((input) =>
+      input.type.includes("select")
+  );
+  const selectMatch = selectInputs.find((select) =>
+      select.id.includes(inputId)
+  );
+  return selectMatch?.value;
+};
+
+const getCSSMappingsObject = () => {
+  const numberInputs = Array.from(numberAndSelectInputs).filter(
+      (input) => input.type === "number"
+  );
+  const numberAndColorInputs = [...numberInputs, ...Array.from(colorInputs)]
+  return numberAndColorInputs.reduce((acc, currentValue) => {
+    const id = `${currentValue.id}`;
+    const unit = getUnit(currentValue.id);
+    const cssValue = unit ? `${currentValue.value}${unit}` : currentValue.value;
+    return { ...acc, [id]: cssValue };
+  }, {});
+};
+
+const generateStyles = () => {
+  const cssMappings = getCSSMappingsObject()
+
+  codeEl.innerText = `
+/*********** Baseline, reset styles ***********/
+input[type="range"] {
+  -webkit-appearance: none;
+  cursor: pointer;
+  background: transparent;
+  width: ${cssMappings["track-width"]};
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+/*********** Chrome, Safari, Opera and Edge (post Chromium) styles ***********/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: ${cssMappings["track-color"]};
+  border-radius: ${cssMappings["track-border-radius"]};
+  height: ${cssMappings["track-height"]};
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  margin-top: -4px; /* Centers the thumb on the track */
+
+  /*Customizable styles*/
+  background-color: ${cssMappings["thumb-color"]};
+  border-radius: ${cssMappings["thumb-border-radius"]};
+  height: ${cssMappings["thumb-height"]};
+  width: ${cssMappings["thumb-width"]};
+}
+
+/*********** Firefox styles ***********/
+/* slider track */
+input[type="range"]::-moz-range-track {
+  background-color: ${cssMappings["track-color"]};
+  border-radius: ${cssMappings["track-border-radius"]};
+  height: ${cssMappings["track-height"]};
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+  background-color: ${cssMappings["thumb-color"]};
+  border-radius: ${cssMappings["thumb-border-radius"]};
+  height: ${cssMappings["thumb-height"]};
+  width: ${cssMappings["thumb-width"]};
+}
+
+/*********** IE and legacy Edge styles ***********/
+/* slider track */
+.slider::-ms-track {
+  color: transparent; /*remove default tick marks*/
+  height: ${cssMappings["track-height"]};
+
+  /*leave room for the larger thumb to overflow with a transparent border */
+  border-color: transparent;
+  border-width: 7px 0;
+}
+.slider::-ms-fill-lower,
+.slider::-ms-fill-upper {
+  background-color: ${cssMappings["track-color"]};
+  border-radius: ${cssMappings["track-border-radius"]};
+}
+/* slider thumb */
+.slider::-ms-thumb {
+  margin-top: 0;
+  background-color: ${cssMappings["thumb-color"]};
+  border-radius: ${cssMappings["thumb-border-radius"]};
+  height: ${cssMappings["thumb-height"]};
+  width: ${cssMappings["thumb-width"]};
+}
+`;
+}
+
+
+

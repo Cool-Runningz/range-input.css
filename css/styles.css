@@ -4,7 +4,6 @@
   background-color: #80808038;
   border-left: 4px solid grey;
   padding: 1rem;
-  margin-bottom: 2.5rem;
 }
 
 .flex-container-center {
@@ -50,6 +49,12 @@ select {
   margin-left: 0.25rem;
 }
 
+code {
+  min-height: 25rem;
+  max-height: 35rem;
+  overflow: scroll;
+}
+
 #code-container {
   width: var(--width-card-medium);
 }
@@ -58,8 +63,14 @@ pre {
   position: relative;
 }
 
+#range-input-container {
+  margin-bottom: 3rem;
+  margin-top: 1rem;
+}
+
 /***********Tooltip Styles**************/
 #copy-btn {
+  padding: 0.25rem 0.5rem;
   position: absolute;
   right: 1rem;
   top: 3.5rem;
