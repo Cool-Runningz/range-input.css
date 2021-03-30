@@ -1,7 +1,9 @@
 //Element variables
 const copyBtn = document.getElementById("copy-btn");
 const colorInputs = document.querySelectorAll("input[type='color']");
-const numberAndSelectInputs = document.querySelectorAll("input[type='number'], select");
+const numberAndSelectInputs = document.querySelectorAll(
+  "input[type='number'], select"
+);
 const rangeInput = document.querySelector("input[type='range']");
 const codeEl = document.getElementsByTagName("code")[0];
 
@@ -36,18 +38,18 @@ const onNumberOrSelectInputChange = (event) => {
   }
 
   rangeInput.style.setProperty(`--${cssVar}`, `${dimension}${unit}`);
-  generateStyles()
+  generateStyles();
 };
 
 const onColorInputChange = (event) => {
   const cssVar = event.target.id;
   rangeInput.style.setProperty(`--${cssVar}`, event.target.value);
- generateStyles()
+  generateStyles();
 };
 
 //Setting up Event Listeners
-window.onload = function() {
-  generateStyles()
+window.onload = function () {
+  generateStyles();
 };
 copyBtn.addEventListener("click", copyCSS);
 Array.from(numberAndSelectInputs).forEach((input) => {
@@ -59,19 +61,19 @@ Array.from(colorInputs).forEach((input) => {
 
 const getUnit = (inputId) => {
   const selectInputs = Array.from(numberAndSelectInputs).filter((input) =>
-      input.type.includes("select")
+    input.type.includes("select")
   );
   const selectMatch = selectInputs.find((select) =>
-      select.id.includes(inputId)
+    select.id.includes(inputId)
   );
   return selectMatch?.value;
 };
 
 const getCSSMappingsObject = () => {
   const numberInputs = Array.from(numberAndSelectInputs).filter(
-      (input) => input.type === "number"
+    (input) => input.type === "number"
   );
-  const numberAndColorInputs = [...numberInputs, ...Array.from(colorInputs)]
+  const numberAndColorInputs = [...numberInputs, ...Array.from(colorInputs)];
   return numberAndColorInputs.reduce((acc, currentValue) => {
     const id = `${currentValue.id}`;
     const unit = getUnit(currentValue.id);
@@ -81,7 +83,7 @@ const getCSSMappingsObject = () => {
 };
 
 const generateStyles = () => {
-  const cssMappings = getCSSMappingsObject()
+  const cssMappings = getCSSMappingsObject();
 
   codeEl.innerText = `
 /*********** Baseline, reset styles ***********/
@@ -97,7 +99,7 @@ input[type="range"]:focus {
   outline: none;
 }
 
-/*********** Chrome, Safari, Opera and Edge (post Chromium) styles ***********/
+/******** Chrome, Safari, Opera and Edge styles ********/
 /* slider track */
 input[type="range"]::-webkit-slider-runnable-track {
   background-color: ${cssMappings["track-color"]};
@@ -171,4 +173,4 @@ input[type="range"]:focus::-ms-thumb {
   outline-offset: 0.125rem;
 }
 `;
-}
+};

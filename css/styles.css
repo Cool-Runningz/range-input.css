@@ -56,7 +56,7 @@ code {
 }
 
 #code-container {
-  width: var(--width-card-medium);
+  width: 700px;
 }
 
 pre {
