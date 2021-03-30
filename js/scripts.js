@@ -48,9 +48,7 @@ const onColorInputChange = (event) => {
 };
 
 //Setting up Event Listeners
-window.onload = function () {
-  generateStyles();
-};
+window.addEventListener("load", (event) => generateStyles());
 copyBtn.addEventListener("click", copyCSS);
 Array.from(numberAndSelectInputs).forEach((input) => {
   input.addEventListener("change", onNumberOrSelectInputChange);

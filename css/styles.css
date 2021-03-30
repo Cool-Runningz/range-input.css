@@ -64,8 +64,11 @@ pre {
 }
 
 #range-input-container {
+  display: flex;
+  justify-content: center;
   margin-bottom: 3rem;
   margin-top: 1rem;
+  width: 100%;
 }
 
 .triangle-top-right {
