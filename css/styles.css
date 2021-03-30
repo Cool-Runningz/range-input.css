@@ -68,6 +68,20 @@ pre {
   margin-top: 1rem;
 }
 
+.triangle-top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top: 95px solid var(--color);
+  border-left: 95px solid transparent;
+}
+
+.triangle-top-right + a {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
 /***********Tooltip Styles**************/
 #copy-btn {
   padding: 0.25rem 0.5rem;
