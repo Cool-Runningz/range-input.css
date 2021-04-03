@@ -1,9 +1,8 @@
 //Element variables
 const copyBtn = document.getElementById("copy-btn");
 const colorInputs = document.querySelectorAll("input[type='color']");
-const numberAndSelectInputs = document.querySelectorAll(
-  "input[type='number'], select"
-);
+const numberInputs = document.querySelectorAll("input[type='number']");
+const selectInputs = document.querySelectorAll("select");
 const rangeInput = document.querySelector("input[type='range']");
 const codeEl = document.getElementsByTagName("code")[0];
 
@@ -19,23 +18,26 @@ const copyCSS = () => {
     .catch(() => console.error("Error: Unable to copy to clipboard"));
 };
 
-const onNumberOrSelectInputChange = (event) => {
-  let cssVar, dimension, unit;
+const onNumberInputChange = (event) => {
+  //Grab the select value to the right in order to get the current unit.
+  const select = Array.from(selectInputs).find(
+    (select) => select.id === `${event.target.id}-unit`
+  );
+  const unit = select.value; //rem, px, or %
+  const dimension = event.target.value; //number input value
+  const cssVar = event.target.id; //CSS variable that will get updated in range.css
 
-  if (event.target.type === "number") {
-    const select = document.getElementById(`${event.target.id}-unit`); //Grab the select value to the right in order to get the current unit.
-    unit = select.value; //rem, px, or %
-    dimension = event.target.value; //number input value
-    cssVar = event.target.id; //CSS variable that will get updated in range.css
-  } else {
-    const splitId = event.target.id.split("-"); //Get the select ID and split it so that we can infer the corresponding input ID
-    const inputId = splitId.slice(0, splitId.length - 1).join("-"); //The input ID is the same as the select id sans the '-unit'
-    const input = document.getElementById(`${inputId}`);
+  rangeInput.style.setProperty(`--${cssVar}`, `${dimension}${unit}`);
+  generateStyles();
+};
 
-    dimension = input.value;
-    unit = event.target.value;
-    cssVar = inputId;
-  }
+const onSelectChange = (event) => {
+  const input = Array.from(numberInputs).find((input) =>
+    event.target.id.includes(input.id)
+  );
+  const dimension = input.value;
+  const unit = event.target.value;
+  const cssVar = input.id;
 
   rangeInput.style.setProperty(`--${cssVar}`, `${dimension}${unit}`);
   generateStyles();
@@ -50,28 +52,25 @@ const onColorInputChange = (event) => {
 //Setting up Event Listeners
 window.addEventListener("load", (event) => generateStyles());
 copyBtn.addEventListener("click", copyCSS);
-Array.from(numberAndSelectInputs).forEach((input) => {
-  input.addEventListener("change", onNumberOrSelectInputChange);
-});
 Array.from(colorInputs).forEach((input) => {
   input.addEventListener("input", onColorInputChange);
 });
+Array.from(numberInputs).forEach((input) => {
+  input.addEventListener("change", onNumberInputChange);
+});
+Array.from(selectInputs).forEach((select) => {
+  select.addEventListener("change", onSelectChange);
+});
 
 const getUnit = (inputId) => {
-  const selectInputs = Array.from(numberAndSelectInputs).filter((input) =>
-    input.type.includes("select")
-  );
-  const selectMatch = selectInputs.find((select) =>
+  const selectMatch = Array.from(selectInputs).find((select) =>
     select.id.includes(inputId)
   );
   return selectMatch?.value;
 };
 
 const getCSSMappingsObject = () => {
-  const numberInputs = Array.from(numberAndSelectInputs).filter(
-    (input) => input.type === "number"
-  );
-  const numberAndColorInputs = [...numberInputs, ...Array.from(colorInputs)];
+  const numberAndColorInputs = [...numberInputs, ...colorInputs];
   return numberAndColorInputs.reduce((acc, currentValue) => {
     const id = `${currentValue.id}`;
     const unit = getUnit(currentValue.id);
