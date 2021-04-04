@@ -1,4 +1,4 @@
-//Element variables
+/*********** Element variables ***********/
 const copyBtn = document.getElementById("copy-btn");
 const colorInputs = document.querySelectorAll("input[type='color']");
 const numberInputs = document.querySelectorAll("input[type='number']");
@@ -6,6 +6,7 @@ const selectInputs = document.querySelectorAll("select");
 const rangeInput = document.querySelector("input[type='range']");
 const codeEl = document.getElementsByTagName("code")[0];
 
+/*********** Event handlers ***********/
 const copyCSS = () => {
   navigator.clipboard
     .writeText(codeEl.innerText.trim())
@@ -49,7 +50,7 @@ const onColorInputChange = (event) => {
   generateStyles();
 };
 
-//Setting up Event Listeners
+/*********** Set up Event Listeners ***********/
 window.addEventListener("load", (event) => generateStyles());
 copyBtn.addEventListener("click", copyCSS);
 Array.from(colorInputs).forEach((input) => {
@@ -62,6 +63,7 @@ Array.from(selectInputs).forEach((select) => {
   select.addEventListener("change", onSelectChange);
 });
 
+/*********** Util helper methods ***********/
 const getUnit = (inputId) => {
   const selectMatch = Array.from(selectInputs).find((select) =>
     select.id.includes(inputId)
@@ -77,6 +79,13 @@ const getCSSMappingsObject = () => {
     const cssValue = unit ? `${currentValue.value}${unit}` : currentValue.value;
     return { ...acc, [id]: cssValue };
   }, {});
+};
+
+const calculateCenter = (trackHeight, thumbHeight) => {
+  const remToPx = (value) => parseFloat(value) * 16;
+  const trackHeightNum = trackHeight.includes("rem") ? remToPx(trackHeight) : parseFloat(trackHeight);
+  const thumbHeightNum = thumbHeight.includes("rem") ? remToPx(thumbHeight) : parseFloat(thumbHeight);
+  return `${(trackHeightNum / 2) - (thumbHeightNum / 2)}px`;
 };
 
 const generateStyles = () => {
@@ -107,7 +116,10 @@ input[type="range"]::-webkit-slider-runnable-track {
 /* slider thumb */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
-  margin-top: -4px; /* Centers thumb on the track */
+  margin-top: ${calculateCenter(
+    `${cssMappings["track-height"]}`,
+    `${cssMappings["thumb-height"]}`
+  )}; /* Centers thumb on the track */
   background-color: ${cssMappings["thumb-color"]};
   border-radius: ${cssMappings["thumb-border-radius"]};
   height: ${cssMappings["thumb-height"]};
