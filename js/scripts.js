@@ -105,7 +105,7 @@ input[type="range"]:focus {
   outline: none;
 }
 
-/******** Chrome, Safari, Opera and Edge styles ********/
+/******** Chrome, Safari, Opera and Edge Chromium styles ********/
 /* slider track */
 input[type="range"]::-webkit-slider-runnable-track {
   background-color: ${cssMappings["track-color"]};
@@ -148,36 +148,6 @@ input[type="range"]::-moz-range-thumb {
 }
 
 input[type="range"]:focus::-moz-range-thumb{
-  outline: 3px solid ${cssMappings["thumb-color"]};
-  outline-offset: 0.125rem;
-}
-
-/*********** IE and legacy Edge styles ***********/
-/* slider track */
-input[type="range"]::-ms-track {
-  color: transparent; /*remove default tick marks*/
-  height: ${cssMappings["track-height"]};
-
-  /*leave room for the larger thumb to overflow with a transparent border */
-  border-color: transparent;
-  border-width: 7px 0;
-}
-input[type="range"]::-ms-fill-lower,
-input[type="range"]::-ms-fill-upper {
-  background-color: ${cssMappings["track-color"]};
-  border-radius: ${cssMappings["track-border-radius"]};
-}
-/* slider thumb */
-input[type="range"]::-ms-thumb {
-  margin-top: 0;
-  background-color: ${cssMappings["thumb-color"]};
-  border-radius: ${cssMappings["thumb-border-radius"]};
-  height: ${cssMappings["thumb-height"]};
-  width: ${cssMappings["thumb-width"]};
-}
-input[type="range"]:focus::-ms-thumb {
-  margin-left: 4px; /** Offset the border from getting hidden at starting position */
-  margin-right: 4px; /** Offset the border from getting hidden at ending position */
   outline: 3px solid ${cssMappings["thumb-color"]};
   outline-offset: 0.125rem;
 }
