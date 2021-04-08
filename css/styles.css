@@ -85,6 +85,11 @@ pre {
   right: 2px;
 }
 
+[id^="card"] h2 {
+  text-align: center;
+  text-decoration: underline;
+}
+
 /***********Tooltip Styles**************/
 #copy-btn {
   padding: 0.25rem 0.5rem;
