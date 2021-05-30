@@ -60,6 +60,7 @@ input[type="range"]::-moz-range-track {
 /* slider thumb */
 input[type="range"]::-moz-range-thumb {
   background-color: var(--thumb-color);
+  border: none; /*Removes extra border that FF applies*/
   border-radius: var(--thumb-border-radius);
   height: var(--thumb-height);
   width: var(--thumb-width);

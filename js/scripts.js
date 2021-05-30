@@ -33,12 +33,12 @@ const onNumberInputChange = (event) => {
 };
 
 const onSelectChange = (event) => {
-  const input = Array.from(numberInputs).find((input) =>
+  const numInput = Array.from(numberInputs).find((input) =>
     event.target.id.includes(input.id)
   );
-  const dimension = input.value;
   const unit = event.target.value;
-  const cssVar = input.id;
+  const dimension = numInput.value;
+  const cssVar = numInput.id;
 
   rangeInput.style.setProperty(`--${cssVar}`, `${dimension}${unit}`);
   generateStyles();
