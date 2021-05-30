@@ -142,6 +142,7 @@ input[type="range"]::-moz-range-track {
 /* slider thumb */
 input[type="range"]::-moz-range-thumb {
   background-color: ${cssMappings["thumb-color"]};
+  border: none;
   border-radius: ${cssMappings["thumb-border-radius"]};
   height: ${cssMappings["thumb-height"]};
   width: ${cssMappings["thumb-width"]};
