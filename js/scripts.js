@@ -83,9 +83,13 @@ const getCSSMappingsObject = () => {
 
 const calculateCenter = (trackHeight, thumbHeight) => {
   const remToPx = (value) => parseFloat(value) * 16;
-  const trackHeightNum = trackHeight.includes("rem") ? remToPx(trackHeight) : parseFloat(trackHeight);
-  const thumbHeightNum = thumbHeight.includes("rem") ? remToPx(thumbHeight) : parseFloat(thumbHeight);
-  return `${(trackHeightNum / 2) - (thumbHeightNum / 2)}px`;
+  const trackHeightNum = trackHeight.includes("rem")
+    ? remToPx(trackHeight)
+    : parseFloat(trackHeight);
+  const thumbHeightNum = thumbHeight.includes("rem")
+    ? remToPx(thumbHeight)
+    : parseFloat(thumbHeight);
+  return `${trackHeightNum / 2 - thumbHeightNum / 2}px`;
 };
 
 const generateStyles = () => {
@@ -95,8 +99,9 @@ const generateStyles = () => {
 /*********** Baseline, reset styles ***********/
 input[type="range"] {
   -webkit-appearance: none;
-  cursor: pointer;
+  appearance: none;
   background: transparent;
+  cursor: pointer;
   width: ${cssMappings["track-width"]};
 }
 
@@ -116,6 +121,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 /* slider thumb */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
+  appearance: none;
   margin-top: ${calculateCenter(
     `${cssMappings["track-height"]}`,
     `${cssMappings["thumb-height"]}`
@@ -142,7 +148,7 @@ input[type="range"]::-moz-range-track {
 /* slider thumb */
 input[type="range"]::-moz-range-thumb {
   background-color: ${cssMappings["thumb-color"]};
-  border: none;
+  border: none; /*Removes extra border that FF applies*/
   border-radius: ${cssMappings["thumb-border-radius"]};
   height: ${cssMappings["thumb-height"]};
   width: ${cssMappings["thumb-width"]};

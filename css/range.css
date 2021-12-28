@@ -12,8 +12,9 @@
 /*********** Baseline, reset styles ***********/
 input[type="range"] {
   -webkit-appearance: none;
-  cursor: pointer;
+  appearance: none;
   background: transparent;
+  cursor: pointer;
   width: var(--track-width);
 }
 
@@ -33,6 +34,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 /* slider thumb */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
+  appearance: none;
   margin-top: calc(
     (var(--track-height) / 2) - (var(--thumb-height) / 2)
   ); /* Centers the thumb on the track */
