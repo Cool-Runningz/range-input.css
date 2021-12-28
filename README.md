@@ -18,6 +18,8 @@
 
 ## About this Project ✨
 
+🔖 To learn more, check out my [Smashing Magazine article](https://www.smashingmagazine.com/2021/12/create-custom-range-input-consistent-browsers/) describing the quirkiness of the range input.
+
 > Range inputs have notoriously been a pain to style. Each browser renders the input differently requiring you to use vendor prefixes in order to create a cohesive look and feel. To speed up the process, I created this tool to make it easier for you to create custom range inputs that will look awesome and consistent across all browsers!
 
 <img src="images/range-input-css-demo.gif" height="auto" width="800px"  margin="20px">
