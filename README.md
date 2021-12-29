@@ -49,6 +49,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Alyssa Holland - [@Code_Runnings](https://twitter.com/your_username) - HeyAHolland@gmail.com
+Alyssa Holland - [@alyssa_codes](https://twitter.com/alyssa_codes) - HeyAHolland@gmail.com
 
 Project Link: [https://github.com/Cool-Runningz/range-input.css](https://github.com/Cool-Runningz/range-input.css)
