@@ -19,7 +19,7 @@ const copyCSS = () => {
     .catch(() => console.error("Error: Unable to copy to clipboard"));
 };
 
-const onNumberInputChange = (event) => {
+const handleNumberInputChange = (event) => {
   //Grab the select value to the right in order to get the current unit.
   const select = Array.from(selectInputs).find(
     (select) => select.id === `${event.target.id}-unit`
@@ -32,7 +32,7 @@ const onNumberInputChange = (event) => {
   generateStyles();
 };
 
-const onSelectChange = (event) => {
+const handleSelectChange = (event) => {
   const numInput = Array.from(numberInputs).find((input) =>
     event.target.id.includes(input.id)
   );
@@ -44,7 +44,7 @@ const onSelectChange = (event) => {
   generateStyles();
 };
 
-const onColorInputChange = (event) => {
+const handleColorInputChange = (event) => {
   const cssVar = event.target.id;
   rangeInput.style.setProperty(`--${cssVar}`, event.target.value);
   generateStyles();
@@ -54,13 +54,13 @@ const onColorInputChange = (event) => {
 window.addEventListener("load", (event) => generateStyles());
 copyBtn.addEventListener("click", copyCSS);
 Array.from(colorInputs).forEach((input) => {
-  input.addEventListener("input", onColorInputChange);
+  input.addEventListener("input", handleColorInputChange);
 });
 Array.from(numberInputs).forEach((input) => {
-  input.addEventListener("change", onNumberInputChange);
+  input.addEventListener("change", handleNumberInputChange);
 });
 Array.from(selectInputs).forEach((select) => {
-  select.addEventListener("change", onSelectChange);
+  select.addEventListener("change", handleSelectChange);
 });
 
 /*********** Util helper methods ***********/
