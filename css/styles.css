@@ -15,6 +15,7 @@ nav {
   display: flex;
   justify-content: flex-end;
   margin: 0rem 3rem;
+  justify-content: space-between;
 }
 
 input[type="number"] {
