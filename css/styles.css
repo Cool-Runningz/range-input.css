@@ -51,8 +51,7 @@ select {
 }
 
 code {
-  min-height: 25rem;
-  max-height: 35rem;
+  min-height: 35rem;
   overflow: scroll;
 }
 
@@ -97,6 +96,11 @@ pre {
   position: absolute;
   right: 1rem;
   top: 3.5rem;
+}
+
+#copy-btn:focus {
+  background-color: var(--color-bg);
+  color: var(--color);
 }
 
 #copy-btn.tooltip::before,
